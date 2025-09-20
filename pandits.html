@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pandits – PanditConnect</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Page specific styles -->
+    <style>
+      /* Filters */
+      .filters {
+        background: var(--light-bg);
+        padding: 1rem;
+        border-radius: 12px;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        align-items: end;
+        margin-bottom: 2rem;
+      }
+      .filters label {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 0.25rem;
+      }
+      .filters select,
+      .filters input {
+        width: 100%;
+        padding: 0.55rem 0.7rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+      /* Pandit grid */
+      .pandit-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+      }
+      .pandit-card {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 6px 26px rgba(0, 0, 0, 0.06);
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .pandit-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.09);
+      }
+      .pandit-top {
+        display: flex;
+        gap: 0.9rem;
+        align-items: center;
+      }
+      .pandit-card img.photo {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #f5eadf;
+        display: block;
+      }
+      .pandit-card .avatar {
+        display: none;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #f3c27a, #e79a56);
+        color: #7a1e1e;
+      }
+      .pandit-name {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+      .meta {
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-top: 0.2rem;
+      }
+      .tag {
+        font-size: 0.78rem;
+        background: #fff6ed;
+        border: 1px solid #ffe2c8;
+        color: #7f2a10;
+        padding: 0.2rem 0.45rem;
+        border-radius: 999px;
+      }
+      .rating {
+        color: #f3a712;
+      }
+      .card-actions {
+        display: flex;
+        gap: 0.6rem;
+        margin-top: 0.5rem;
+      }
+      .btn-outline {
+        border: 1px solid var(--secondary);
+        color: var(--secondary);
+        padding: 0.5rem 0.8rem;
+        border-radius: 10px;
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+      .btn-outline:hover {
+        background: var(--secondary);
+        color: #fff;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+        padding: 0.5rem 0.8rem;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      .btn-primary:hover {
+        filter: brightness(0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <a href="index.html"><i class="fas fa-om"></i></a>
+        <span>PanditConnect</span>
+      </div>
+      <nav id="nav">
+        <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pandits.html" class="active">Pandits</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a class="btn btn-small nav-cta" href="booking.html">Book Now</a>
+      </nav>
+    </header>
+    <!-- Page Hero -->
+    <section class="page-hero" style="background-image: linear-gradient(135deg, var(--primary), var(--accent)), url('images/mandala2.png'); background-size: cover; background-position: center;">
+      <div class="hero-content" style="text-align: center; padding: 4rem 1.5rem; color: #fff;">
+        <h1>Find the right Pandit for your ceremony</h1>
+        <p>Filter by city, language and specialty. Every pandit is verified.</p>
+      </div>
+    </section>
+    <!-- Filters -->
+    <section class="section" style="padding: 2rem 1rem;">
+      <div class="container" style="max-width: 1100px; margin: 0 auto;">
+        <form id="pandit-filters" class="filters">
+          <div>
+            <label for="city">City</label>
+            <select id="city">
+              <option value="">All</option>
+              <option>Ahmedabad</option><option>Mumbai</option><option>Delhi</option><option>Bengaluru</option>
+              <option>Hyderabad</option><option>Chennai</option><option>Kolkata</option><option>Pune</option>
+              <option>Jaipur</option><option>Lucknow</option>
+            </select>
+          </div>
+          <div>
+            <label for="language">Language</label>
+            <select id="language">
+              <option value="">All</option>
+              <option>Hindi</option><option>Gujarati</option><option>Marathi</option><option>Bengali</option>
+              <option>Kannada</option><option>Telugu</option><option>Tamil</option><option>Sanskrit</option><option>English</option>
+            </select>
+          </div>
+          <div>
+            <label for="specialty">Specialty</label>
+            <select id="specialty">
+              <option value="">All</option>
+              <option>Griha Pravesh</option><option>Satyanarayan</option><option>Rudrabhishek</option><option>Chandi Homam</option>
+              <option>Navagraha</option><option>Ganesh Puja</option><option>Lakshmi Puja</option><option>Durga Puja</option>
+              <option>Wedding</option><option>Naming</option><option>Annaprashan</option><option>Pitru Puja</option>
+              <option>Business Opening</option><option>Vehicle Puja</option><option>Maha Mrityunjaya</option><option>Vaastu Shanti</option><option>Upanayanam</option>
+            </select>
+          </div>
+          <div>
+            <label for="search">Search (name or keyword)</label>
+            <input id="search" type="text" placeholder="e.g., Satyanarayan, Gujarati, Rajesh" />
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- Pandit Grid -->
+    <section class="section" style="padding: 2rem 1rem;">
+      <div class="container" style="max-width: 1100px; margin: 0 auto;">
+        <div id="pandit-grid" class="pandit-grid">
+          <!-- Pandit profiles: 16 entries -->
+          <!-- 1 -->
+          <article class="pandit-card" data-city="Ahmedabad" data-language="Hindi,Gujarati,Sanskrit" data-specialty="Griha Pravesh,Satyanarayan,Vaastu Shanti">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit1.png" alt="Pandit Rajesh Sharma" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Rajesh Sharma <span class="rating"><i class="fa fa-star"></i> 4.9</span></div>
+                <div class="meta">Ahmedabad • 12+ yrs • Hindi, Gujarati, Sanskrit</div>
+                <div class="tags"><span class="tag">Griha Pravesh</span><span class="tag">Satyanarayan</span><span class="tag">Vaastu</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Rajesh%20Sharma">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Griha%20Pravesh&pandit=Pandit%20Rajesh%20Sharma">Book</a>
+            </div>
+          </article>
+          <!-- 2 -->
+          <article class="pandit-card" data-city="Ahmedabad" data-language="Hindi,Gujarati,English" data-specialty="Naming,Annaprashan,Satyanarayan">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit2.png" alt="Pandit Neha Trivedi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Neha Trivedi <span class="rating"><i class="fa fa-star"></i> 4.8</span></div>
+                <div class="meta">Ahmedabad • 9 yrs • Hindi, Gujarati, English</div>
+                <div class="tags"><span class="tag">Naming</span><span class="tag">Annaprashan</span><span class="tag">Satyanarayan</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Neha%20Trivedi">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Satyanarayan&pandit=Pandit%20Neha%20Trivedi">Book</a>
+            </div>
+          </article>
+          <!-- 3 -->
+          <article class="pandit-card" data-city="Mumbai" data-language="Hindi,Marathi,Sanskrit" data-specialty="Ganesh Puja,Satyanarayan,Business Opening">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit3.png" alt="Pandit Vikas Iyer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Vikas Iyer <span class="rating"><i class="fa fa-star"></i> 4.9</span></div>
+                <div class="meta">Mumbai • 14 yrs • Hindi, Marathi, Sanskrit</div>
+                <div class="tags"><span class="tag">Ganesh</span><span class="tag">Satyanarayan</span><span class="tag">Business Opening</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Vikas%20Iyer">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Ganesh%20Puja&pandit=Pandit%20Vikas%20Iyer">Book</a>
+            </div>
+          </article>
+          <!-- 4 -->
+          <article class="pandit-card" data-city="Kolkata" data-language="Bengali,Hindi,Sanskrit,English" data-specialty="Durga Puja,Lakshmi Puja,Satyanarayan">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit1.png" alt="Pandit Ananya Bhattacharya" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Ananya Bhattacharya <span class="rating"><i class="fa fa-star"></i> 4.8</span></div>
+                <div class="meta">Kolkata • 10 yrs • Bengali, Hindi, Sanskrit, English</div>
+                <div class="tags"><span class="tag">Durga</span><span class="tag">Lakshmi</span><span class="tag">Satyanarayan</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Ananya%20Bhattacharya">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Durga%20Puja&pandit=Pandit%20Ananya%20Bhattacharya">Book</a>
+            </div>
+          </article>
+          <!-- 5 -->
+          <article class="pandit-card" data-city="Bengaluru" data-language="Kannada,Hindi,Sanskrit,English" data-specialty="Rudrabhishek,Navagraha,Maha Mrityunjaya">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit2.png" alt="Pandit Raghavendra Rao" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Raghavendra Rao <span class="rating"><i class="fa fa-star"></i> 5.0</span></div>
+                <div class="meta">Bengaluru • 18 yrs • Kannada, Hindi, Sanskrit, English</div>
+                <div class="tags"><span class="tag">Rudrabhishek</span><span class="tag">Navagraha</span><span class="tag">Mrityunjaya</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Raghavendra%20Rao">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Rudrabhishek&pandit=Pandit%20Raghavendra%20Rao">Book</a>
+            </div>
+          </article>
+          <!-- 6 -->
+          <article class="pandit-card" data-city="Delhi" data-language="Hindi,Sanskrit,English" data-specialty="Griha Pravesh,Vaastu Shanti,Wedding">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit3.png" alt="Pandit Arvind Mishra" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Arvind Mishra <span class="rating"><i class="fa fa-star"></i> 4.9</span></div>
+                <div class="meta">Delhi • 15 yrs • Hindi, Sanskrit, English</div>
+                <div class="tags"><span class="tag">Griha Pravesh</span><span class="tag">Vaastu</span><span class="tag">Wedding</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Arvind%20Mishra">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Vaastu%20Shanti&pandit=Pandit%20Arvind%20Mishra">Book</a>
+            </div>
+          </article>
+          <!-- 7 -->
+          <article class="pandit-card" data-city="Hyderabad" data-language="Telugu,Hindi,English,Sanskrit" data-specialty="Chandi Homam,Navagraha,Mrityunjaya">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit1.png" alt="Pandit Suryanarayana Garu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Suryanarayana Garu <span class="rating"><i class="fa fa-star"></i> 4.9</span></div>
+                <div class="meta">Hyderabad • 20 yrs • Telugu, Hindi, English, Sanskrit</div>
+                <div class="tags"><span class="tag">Chandi Homam</span><span class="tag">Navagraha</span><span class="tag">Mrityunjaya</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Suryanarayana%20Garu">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Chandi%20Homam&pandit=Pandit%20Suryanarayana%20Garu">Book</a>
+            </div>
+          </article>
+          <!-- 8 -->
+          <article class="pandit-card" data-city="Chennai" data-language="Tamil,Sanskrit,English" data-specialty="Upanayanam,Wedding,Navagraha">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit2.png" alt="Pandit Subramanian Iyer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Subramanian Iyer <span class="rating"><i class="fa fa-star"></i> 4.8</span></div>
+                <div class="meta">Chennai • 16 yrs • Tamil, Sanskrit, English</div>
+                <div class="tags"><span class="tag">Upanayanam</span><span class="tag">Wedding</span><span class="tag">Navagraha</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Subramanian%20Iyer">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Upanayanam&pandit=Pandit%20Subramanian%20Iyer">Book</a>
+            </div>
+          </article>
+          <!-- 9 -->
+          <article class="pandit-card" data-city="Pune" data-language="Marathi,Hindi,Sanskrit" data-specialty="Satyanarayan,Ganesh Puja,Vehicle Puja">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit3.png" alt="Pandit Omkar Kulkarni" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Omkar Kulkarni <span class="rating"><i class="fa fa-star"></i> 4.8</span></div>
+                <div class="meta">Pune • 11 yrs • Marathi, Hindi, Sanskrit</div>
+                <div class="tags"><span class="tag">Satyanarayan</span><span class="tag">Ganesh</span><span class="tag">Vehicle</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Omkar%20Kulkarni">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Satyanarayan&pandit=Pandit%20Omkar%20Kulkarni">Book</a>
+            </div>
+          </article>
+          <!-- 10 -->
+          <article class="pandit-card" data-city="Jaipur" data-language="Hindi,Sanskrit" data-specialty="Griha Pravesh,Vaastu Shanti,Wedding">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit1.png" alt="Pandit Mahesh Vashistha" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Mahesh Vashistha <span class="rating"><i class="fa fa-star"></i> 4.9</span></div>
+                <div class="meta">Jaipur • 17 yrs • Hindi, Sanskrit</div>
+                <div class="tags"><span class="tag">Griha Pravesh</span><span class="tag">Vaastu</span><span class="tag">Wedding</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Mahesh%20Vashistha">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Griha%20Pravesh&pandit=Pandit%20Mahesh%20Vashistha">Book</a>
+            </div>
+          </article>
+          <!-- 11 -->
+          <article class="pandit-card" data-city="Lucknow" data-language="Hindi,Sanskrit,English" data-specialty="Pitru Puja,Maha Mrityunjaya,Satyanarayan">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit2.png" alt="Pandit Shashank Tiwari" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Shashank Tiwari <span class="rating"><i class="fa fa-star"></i> 4.8</span></div>
+                <div class="meta">Lucknow • 13 yrs • Hindi, Sanskrit, English</div>
+                <div class="tags"><span class="tag">Pitru</span><span class="tag">Mrityunjaya</span><span class="tag">Satyanarayan</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Shashank%20Tiwari">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Pitru%20Puja&pandit=Pandit%20Shashank%20Tiwari">Book</a>
+            </div>
+          </article>
+          <!-- 12 -->
+          <article class="pandit-card" data-city="Mumbai" data-language="Hindi,Marathi,English" data-specialty="Wedding,Naming,Annaprashan">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit3.png" alt="Pandit Meera Deshpande" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Meera Deshpande <span class="rating"><i class="fa fa-star"></i> 4.9</span></div>
+                <div class="meta">Mumbai • 8 yrs • Hindi, Marathi, English</div>
+                <div class="tags"><span class="tag">Wedding</span><span class="tag">Naming</span><span class="tag">Annaprashan</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Meera%20Deshpande">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Wedding&pandit=Pandit%20Meera%20Deshpande">Book</a>
+            </div>
+          </article>
+          <!-- 13 -->
+          <article class="pandit-card" data-city="Hyderabad" data-language="Telugu,Hindi,English" data-specialty="Ganesh Puja,Navagraha,Vehicle Puja">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit1.png" alt="Pandit Karthik Reddy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Karthik Reddy <span class="rating"><i class="fa fa-star"></i> 4.8</span></div>
+                <div class="meta">Hyderabad • 9 yrs • Telugu, Hindi, English</div>
+                <div class="tags"><span class="tag">Ganesh</span><span class="tag">Navagraha</span><span class="tag">Vehicle</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Karthik%20Reddy">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Ganesh%20Puja&pandit=Pandit%20Karthik%20Reddy">Book</a>
+            </div>
+          </article>
+          <!-- 14 -->
+          <article class="pandit-card" data-city="Chennai" data-language="Tamil,Sanskrit,English" data-specialty="Lakshmi Puja,Wedding,Navagraha">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit2.png" alt="Pandit Aishwarya Raman" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Aishwarya Raman <span class="rating"><i class="fa fa-star"></i> 4.9</span></div>
+                <div class="meta">Chennai • 7 yrs • Tamil, Sanskrit, English</div>
+                <div class="tags"><span class="tag">Lakshmi</span><span class="tag">Wedding</span><span class="tag">Navagraha</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Aishwarya%20Raman">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Lakshmi%20Puja&pandit=Pandit%20Aishwarya%20Raman">Book</a>
+            </div>
+          </article>
+          <!-- 15 -->
+          <article class="pandit-card" data-city="Delhi" data-language="Hindi,Sanskrit,English" data-specialty="Durga Puja,Chandi Homam,Lakshmi Puja">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit3.png" alt="Pandit Nitin Chaturvedi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Nitin Chaturvedi <span class="rating"><i class="fa fa-star"></i> 4.8</span></div>
+                <div class="meta">Delhi • 12 yrs • Hindi, Sanskrit, English</div>
+                <div class="tags"><span class="tag">Durga</span><span class="tag">Chandi Homam</span><span class="tag">Lakshmi</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Nitin%20Chaturvedi">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Chandi%20Homam&pandit=Pandit%20Nitin%20Chaturvedi">Book</a>
+            </div>
+          </article>
+          <!-- 16 -->
+          <article class="pandit-card" data-city="Kolkata" data-language="Bengali,Hindi,Sanskrit" data-specialty="Pitru Puja,Durga Puja,Satyanarayan">
+            <div class="pandit-top">
+              <img class="photo" src="images/pandit1.png" alt="Pandit Soumyajit Ghosh" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="avatar"><i class="fas fa-user"></i></div>
+              <div>
+                <div class="pandit-name">Pandit Soumyajit Ghosh <span class="rating"><i class="fa fa-star"></i> 4.8</span></div>
+                <div class="meta">Kolkata • 9 yrs • Bengali, Hindi, Sanskrit</div>
+                <div class="tags"><span class="tag">Pitru</span><span class="tag">Durga</span><span class="tag">Satyanarayan</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-outline" href="booking.html?pandit=Pandit%20Soumyajit%20Ghosh">View Profile</a>
+              <a class="btn-primary" href="booking.html?service=Pitru%20Puja&pandit=Pandit%20Soumyajit%20Ghosh">Book</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="services.html#ganesh">Ganesh Puja</a></li>
+            <li><a href="services.html#durga">Durga &amp; Navratri</a></li>
+            <li><a href="services.html#gruhapravesh">Griha Pravesh &amp; Vastu</a></li>
+            <li><a href="services.html#chandi">Chandi Homam</a></li>
+            <li><a href="services.html#business">Business Opening</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="press.html">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="help.html">Help Center</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> PanditConnect. All rights reserved. Made with <span class="emoji">🙏</span> in India.</p>
+      </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    <script>
+      // Filtering functionality for the Pandits page
+      (function () {
+        const form = document.getElementById('pandit-filters');
+        const cards = Array.from(document.querySelectorAll('.pandit-card'));
+        const cityInput = document.getElementById('city');
+        const langInput = document.getElementById('language');
+        const specInput = document.getElementById('specialty');
+        const searchInput = document.getElementById('search');
+        function match(text, needle) {
+          return !needle || text.toLowerCase().includes(needle.toLowerCase());
+        }
+        function applyFilters() {
+          const cityVal = cityInput.value.trim();
+          const langVal = langInput.value.trim();
+          const specVal = specInput.value.trim();
+          const q = searchInput.value.trim().toLowerCase();
+          cards.forEach(c => {
+            const cityData = c.getAttribute('data-city') || '';
+            const langData = (c.getAttribute('data-language') || '').toLowerCase();
+            const specData = (c.getAttribute('data-specialty') || '').toLowerCase();
+            const meta = (c.textContent || '').toLowerCase();
+            const ok = (!cityVal || cityData === cityVal) && (!langVal || langData.includes(langVal.toLowerCase())) && (!specVal || specData.includes(specVal.toLowerCase())) && (!q || meta.includes(q));
+            c.style.display = ok ? '' : 'none';
+          });
+        }
+        cityInput.addEventListener('input', applyFilters);
+        langInput.addEventListener('input', applyFilters);
+        specInput.addEventListener('input', applyFilters);
+        searchInput.addEventListener('input', applyFilters);
+        // Initialize
+        applyFilters();
+      })();
+    </script>
+  </body>
+</html>

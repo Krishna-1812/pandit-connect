@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Pandit – PanditConnect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <a href="index.html"><i class="fas fa-om"></i></a>
+        <span>PanditConnect</span>
+      </div>
+      <nav id="nav">
+        <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pandits.html">Pandits</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="booking.html" class="btn btn-small nav-cta active">Book Now</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="page-hero" style="background-image: linear-gradient(135deg, var(--primary), var(--secondary)), url('images/mandala2.png'); background-size: cover; background-position: center;">
+      <div class="hero-content">
+        <h1>Book a Pandit</h1>
+        <p>Fill in your details and we’ll connect you with the right pandit for your ceremony.</p>
+      </div>
+    </section>
+
+    <section class="booking-section" style="padding: 4rem 2rem;">
+      <div class="container" style="max-width: 800px; margin: 0 auto; background-color: var(--light-bg); padding: 2rem 2rem 3rem; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+        <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--secondary);">Booking Form</h2>
+        <form id="booking-form">
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="full-name" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" />
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" />
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" />
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" />
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="service">Select Puja</label>
+            <select id="service" name="service" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+              <option value="">Select a Puja</option>
+              <option value="Ganesh Puja">Ganesh Puja</option>
+              <option value="Lakshmi Puja">Lakshmi Puja</option>
+              <option value="Saraswati Puja">Saraswati Puja</option>
+              <option value="Durga & Navratri Puja">Durga &amp; Navratri Puja</option>
+              <option value="Hanuman Puja">Hanuman Puja</option>
+              <option value="Shiv Puja & Rudrabhishek">Shiv Puja &amp; Rudrabhishek</option>
+              <option value="Krishna Janmashtami Puja">Krishna Janmashtami Puja</option>
+              <option value="Ram Navami Puja">Ram Navami Puja</option>
+              <option value="Satyanarayan Puja">Satyanarayan Puja</option>
+              <option value="Griha Pravesh & Vastu Shanti">Griha Pravesh &amp; Vastu Shanti</option>
+              <option value="Wedding & Engagement">Wedding &amp; Engagement</option>
+              <option value="Naming & Annaprashan">Naming &amp; Annaprashan</option>
+              <option value="Navagraha Puja">Navagraha Puja</option>
+              <option value="Chandi Homam">Chandi Homam</option>
+              <option value="Maha Mrityunjaya Jaap">Maha Mrityunjaya Jaap</option>
+              <option value="Pitru Puja">Pitru Puja</option>
+              <option value="Business & Shop Opening">Business &amp; Shop Opening</option>
+              <option value="Vehicle Puja">Vehicle Puja</option>
+              <option value="Birthday & Special Occasions">Birthday &amp; Special Occasions</option>
+              <option value="New Year Puja">New Year Puja</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="pandit">Preferred Pandit (optional)</label>
+            <select id="pandit" name="pandit" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+              <option value="">No Preference</option>
+              <option value="Rajesh Sharma">Pandit Rajesh Sharma</option>
+              <option value="Meera Joshi">Pandit Meera Joshi</option>
+              <option value="Anil Desai">Pandit Anil Desai</option>
+              <option value="Suman Rao">Pandit Suman Rao</option>
+              <option value="Neha Shah">Pandit Neha Shah</option>
+            </select>
+          </div>
+          <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+            <div class="form-group">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" name="date" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" />
+            </div>
+            <div class="form-group">
+              <label for="time">Preferred Time</label>
+              <select id="time" name="time" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Evening">Evening</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="details">Additional Details</label>
+            <textarea id="details" name="details" rows="4" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+          </div>
+
+          <!-- Payment Section -->
+          <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--secondary);">Payment</h3>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="payment-method">Payment Method</label>
+            <select id="payment-method" name="payment-method" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+              <option value="">Select a payment method</option>
+              <option value="card">Credit/Debit Card</option>
+              <option value="upi">UPI / Wallet</option>
+              <option value="cod">Pay at Venue</option>
+            </select>
+          </div>
+          <!-- Card payment fields -->
+          <div id="card-fields" style="display: none;">
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label for="card-number">Card Number</label>
+              <input type="text" id="card-number" name="card-number" pattern="\d{12,19}" placeholder="XXXX XXXX XXXX XXXX" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" />
+            </div>
+            <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;">
+              <div class="form-group">
+                <label for="card-expiry">Expiry Date</label>
+                <input type="month" id="card-expiry" name="card-expiry" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" />
+              </div>
+              <div class="form-group">
+                <label for="card-cvv">CVV</label>
+                <input type="password" id="card-cvv" name="card-cvv" maxlength="4" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" />
+              </div>
+            </div>
+          </div>
+          <!-- UPI payment field -->
+          <div id="upi-field" style="display: none;">
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label for="upi-id">UPI ID</label>
+              <input type="text" id="upi-id" name="upi-id" placeholder="yourid@upi" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;" />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Booking Request</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="services.html#ganesh">Ganesh Puja</a></li>
+            <li><a href="services.html#durga">Durga &amp; Navratri</a></li>
+            <li><a href="services.html#gruhapravesh">Griha Pravesh &amp; Vastu</a></li>
+            <li><a href="services.html#chandi">Chandi Homam</a></li>
+            <li><a href="services.html#business">Business Opening</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="press.html">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="help.html">Help Center</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> PanditConnect. All rights reserved. Made with <span class="emoji">🙏</span> in India.</p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+      // Prefill service or pandit from URL parameters
+      const params = new URLSearchParams(window.location.search);
+      const serviceParam = params.get('service');
+      const panditParam = params.get('pandit');
+      if (serviceParam) {
+        const serviceSelect = document.getElementById('service');
+        for (const option of serviceSelect.options) {
+          if (option.value.toLowerCase().replace(/\s+/g, '') === serviceParam.toLowerCase().replace(/\s+/g, '')) {
+            option.selected = true;
+          }
+        }
+      }
+      if (panditParam) {
+        const panditSelect = document.getElementById('pandit');
+        for (const option of panditSelect.options) {
+          if (option.value.toLowerCase().replace(/\s+/g, '') === panditParam.toLowerCase().replace(/\s+/g, '')) {
+            option.selected = true;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

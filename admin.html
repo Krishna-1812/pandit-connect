@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard – PanditConnect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <a href="index.html"><i class="fas fa-om"></i></a>
+        <span>PanditConnect</span>
+      </div>
+      <nav id="nav">
+        <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pandits.html">Pandits</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="booking.html" class="btn btn-small nav-cta">Book Now</a>
+      </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero" style="background-image: linear-gradient(135deg, var(--primary), var(--accent)), url('images/mandala1.png'); background-size: cover; background-position: center;">
+      <div class="hero-content">
+        <h1>Admin Dashboard</h1>
+        <p>View incoming booking requests and messages</p>
+      </div>
+    </section>
+
+    <section class="services-section">
+      <h2 style="text-align:left; margin-bottom:1rem;">Booking Requests</h2>
+      <table class="admin-table" id="bookings-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Service</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Details</th>
+            <th>Payment</th>
+            <th>Submitted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Booking rows inserted by JavaScript -->
+        </tbody>
+      </table>
+      <h2 style="text-align:left; margin:2rem 0 1rem;">Contact Messages</h2>
+      <table class="admin-table" id="messages-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Submitted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Message rows inserted by JavaScript -->
+        </tbody>
+      </table>
+      <button id="clear-data-btn" class="btn btn-secondary">Clear All Data</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="services.html#ganesh">Ganesh Puja</a></li>
+            <li><a href="services.html#durga">Durga &amp; Navratri</a></li>
+            <li><a href="services.html#gruhapravesh">Griha Pravesh &amp; Vastu</a></li>
+            <li><a href="services.html#chandi">Chandi Homam</a></li>
+            <li><a href="services.html#business">Business Opening</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="press.html">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="help.html">Help Center</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> PanditConnect. All rights reserved. Made with <span class="emoji">🙏</span> in India.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>
